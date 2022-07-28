@@ -48,6 +48,11 @@ namespace MyAsmBuilder
             methodIl.Emit(OpCodes.Ldarg_0);
             methodIl.Emit(OpCodes.Ldfld, msgField);
             methodIl.Emit(OpCodes.Ret);
+            // Создать метод SayHello().
+            MethodBuilder sayHiMethod = helloWorldClass.DefineMethod("SayHello", MethodAttributes.Public, null, null);
+            methodIl = sayHiMethod.GetILGenerator();
+            methodIl.EmitWriteLine("Hello from the HelloWorld class!");
+            methodIl.Emit(OpCodes.Ret);
         }
     }
 }
