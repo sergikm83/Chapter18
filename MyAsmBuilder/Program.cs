@@ -40,6 +40,14 @@ namespace MyAsmBuilder
             constructorIL.Emit(OpCodes.Ldarg_1);
             constructorIL.Emit(OpCodes.Stfld,msgField);
             constructorIL.Emit(OpCodes.Ret);
+            // Создать стандартный коструктор.
+            helloWorldClass.DefineDefaultConstructor(MethodAttributes.Public);
+            // Создать метод GetMsg().
+            MethodBuilder getMsgMethod = helloWorldClass.DefineMethod("GetMsg", MethodAttributes.Public, typeof(string), null);
+            ILGenerator methodIl = getMsgMethod.GetILGenerator();
+            methodIl.Emit(OpCodes.Ldarg_0);
+            methodIl.Emit(OpCodes.Ldfld, msgField);
+            methodIl.Emit(OpCodes.Ret);
         }
     }
 }
