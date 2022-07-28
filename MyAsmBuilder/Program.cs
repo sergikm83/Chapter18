@@ -53,6 +53,8 @@ namespace MyAsmBuilder
             methodIl = sayHiMethod.GetILGenerator();
             methodIl.EmitWriteLine("Hello from the HelloWorld class!");
             methodIl.Emit(OpCodes.Ret);
+            // Выпустить класс HelloWorld.
+            helloWorldClass.CreateType();
         }
     }
 }
